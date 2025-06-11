@@ -43,9 +43,11 @@ int main() {
             select(p7 >= center, 1 << 7, 0)
     );
 
+    lbp.compile_jit();
     Buffer<uint8_t> output = lbp.realize({input.width(), input.height()});
     Halide::Tools::save_image(output, "../images/lbp_output.png");
 
+    grayscale.compile_jit();
     Buffer<uint8_t> gray_output = grayscale.realize({input.width(), input.height()});
     Halide::Tools::save_image(gray_output, "../images/grayscale.png");
 }
